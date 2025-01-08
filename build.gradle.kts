@@ -3,17 +3,23 @@ plugins {
 }
 
 group = "fr.neskuik.skyly"
-version = "1.0-SNAPSHOT"
+version = "1.0"
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(8))
+}
+
 
 repositories {
     mavenCentral()
+    maven {
+        url = uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+    }
+
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-}
+    compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
 
-tasks.test {
-    useJUnitPlatform()
+
 }
